@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function Signup() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const {
