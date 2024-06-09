@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Grid } from "@mui/material";
 import Navbar from "../components/Navbar";
+import { useGetPhotosQuery } from "../features/pictures/pexelsApiSlice";
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
@@ -16,6 +17,8 @@ function srcset(image, width, height, rows = 1, cols = 1) {
 }
 
 function CustomImageList() {
+  const { data, error, isLoading, isSuccess, isError } = useGetPhotosQuery();
+  console.log(data, error, isLoading, isSuccess, isError);
   return (
     <Grid container spacing={3} justifyContent="center">
       <Grid item xs={12} md={9} lg={6}>
