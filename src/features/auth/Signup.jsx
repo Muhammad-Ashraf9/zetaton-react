@@ -12,19 +12,25 @@ import Stack from "@mui/material/Stack";
 import authErrorMessages from "../../config/firebaseErrors";
 import { signup } from "./authService";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 function Signup() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  async function onSubmit(formData) {
+    console.log("formData :>> ", formData);
 
     try {
       await signup(formData.email, formData.password);
@@ -33,7 +39,7 @@ function Signup() {
       console.error("error :>> ", error);
       setError(authErrorMessages[error.code]);
     }
-  };
+  }
 
   return (
     <Container component="main" maxWidth="xs" className="login-container">
@@ -51,30 +57,44 @@ function Signup() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          sx={{ mt: 1 }}
+        >
           <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
             label="Email Address"
-            name="email"
+            type="email"
+            margin="normal"
+            fullWidth
             autoComplete="email"
             autoFocus
-            onChange={handleChange}
-            value={formData.email}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email address",
+              },
+            })}
+            error={!!errors.email}
+            helperText={errors.email?.message}
           />
           <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
             label="Password"
             type="password"
-            id="password"
+            margin="normal"
+            fullWidth
             autoComplete="current-password"
-            onChange={handleChange}
-            value={formData.password}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must have at least 8 characters",
+              },
+            })}
+            error={!!errors.password}
+            helperText={errors.password?.message}
           />
           {error && (
             <Stack sx={{ width: "100%" }} spacing={2}>

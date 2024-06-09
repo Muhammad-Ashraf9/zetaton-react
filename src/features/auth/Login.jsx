@@ -16,6 +16,7 @@ import { login } from "./authService";
 import { useForm } from "react-hook-form";
 
 function Login() {
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const {
     register,
@@ -27,8 +28,6 @@ function Login() {
       password: "",
     },
   });
-
-  console.log("errors :>> ", errors);
 
   async function onSubmit(formData) {
     console.log("formData :>> ", formData);
@@ -69,8 +68,6 @@ function Login() {
             type="email"
             margin="normal"
             fullWidth
-            // id="email"
-            // name="email"
             autoComplete="email"
             autoFocus
             {...register("email", {
@@ -99,6 +96,11 @@ function Login() {
             error={!!errors.password}
             helperText={errors.password?.message}
           />
+          {error && (
+            <Stack sx={{ width: "100%" }} spacing={2}>
+              <Alert severity="error">{error}</Alert>
+            </Stack>
+          )}
 
           <Button
             type="submit"
