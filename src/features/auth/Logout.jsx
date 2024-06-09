@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { logout } from "../../services/auth";
+import { logout } from "./authService";
 import { clearUser } from "./authSlice";
 
 function Logout() {

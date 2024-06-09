@@ -2,7 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { auth } from "../../config/firebase";
 
 export const login = async (email, password) => {
   try {
@@ -30,5 +30,3 @@ export const logout = async () => {
     throw error;
   }
 };
-
-

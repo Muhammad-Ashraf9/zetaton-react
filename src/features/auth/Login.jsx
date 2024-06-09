@@ -12,7 +12,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import authErrorMessages from "../../config/firebaseErrors";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login } from "./authService";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });

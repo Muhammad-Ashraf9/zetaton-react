@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import authErrorMessages from "../../config/firebaseErrors";
-import { signup } from "../../services/auth";
+import { signup } from "./authService";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
