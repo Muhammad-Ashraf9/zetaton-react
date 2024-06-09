@@ -8,13 +8,19 @@
 git clone https://github.com/Muhammad-Ashraf9/zetaton-react.git
 ```
 
-2.  install dependencies
+2.  cd into the project
+
+```bash
+cd zetaton-react
+```
+
+3.  install dependencies
 
 ```bash
 npm install
 ```
 
-3.  start the project
+4.  start the project
 
 ```bash
 npm run dev
