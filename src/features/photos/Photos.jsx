@@ -4,15 +4,9 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { Box, Grid, Skeleton } from "@mui/material";
 import { useGetPhotosQuery } from "./pexelsApiSlice";
 import FavouriteBtn from "../favourites/FavouriteBtn";
+import { srcset } from "../../utils/srcset";
 
-function srcset(image, width, height, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
+
 
 export default function Photos() {
   const { data, error, isLoading, isError } = useGetPhotosQuery();

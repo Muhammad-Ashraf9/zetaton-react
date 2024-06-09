@@ -14,7 +14,9 @@ export default function FavouriteBtn({ item }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user);
   const favourites = useSelector((state) => state.favourites.favourites);
-  const isFavourite = favourites.some((favourite) => favourite === item.url);
+  const isFavourite = favourites.some(
+    (favourite) => favourite === item.src.original
+  );
 
   const navigate = useNavigate();
 
@@ -27,12 +29,12 @@ export default function FavouriteBtn({ item }) {
     try {
       if (isFavourite) {
         // remove from favourites
-        await removeFavouriteFromDB(user.uid, item.url);
-        dispatch(removeFavourite(item.url));
+        await removeFavouriteFromDB(user.uid, item.src.original);
+        dispatch(removeFavourite(item.src.original));
         return;
       }
-      await addFavouriteToDB(user.uid, item.url);
-      dispatch(addFavourite(item.url));
+      await addFavouriteToDB(user.uid, item.src.original);
+      dispatch(addFavourite(item.src.original));
     } catch (error) {
       console.error(error);
     }
