@@ -10,6 +10,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 export default function FavouriteBtn({ item }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user);
+  const favourites = useSelector((state) => state.favourites.favourites);
+  console.log("favourites :>> ", favourites);
+  console.log("item :>> ", item);
+
+  const isFavourite = favourites.some((favourite) => favourite === item.url);
+  console.log("isFavourite :>> ", isFavourite);
+
   const navigate = useNavigate();
 
   async function handleAddToFavorites() {
@@ -31,7 +38,7 @@ export default function FavouriteBtn({ item }) {
       aria-label={`star ${item.alt}`}
       onClick={handleAddToFavorites}
     >
-      {item.liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+      {isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
     </IconButton>
   );
 }

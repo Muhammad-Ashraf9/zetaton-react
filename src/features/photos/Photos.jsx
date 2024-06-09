@@ -26,26 +26,21 @@ export default function Photos() {
         sx={{ display: "flex", justifyContent: "center" }}
       >
         <ImageList gap={3}>
-          {[...Array(20)].map(
-            (_, index) => (
-              console.log("index :>> ", index),
-              (
-                <ImageListItem key={index}>
-                  <Skeleton
-                    variant="rectangular"
-                    sx={{ bgcolor: "grey.900" }}
-                    width={250}
-                    height={200}
-                  />
-                  <ImageListItemBar
-                    title={<Skeleton />}
-                    subtitle={<Skeleton />}
-                    position="top"
-                  />
-                </ImageListItem>
-              )
-            )
-          )}
+          {[...Array(20)].map((_, index) => (
+            <ImageListItem key={index}>
+              <Skeleton
+                variant="rectangular"
+                sx={{ bgcolor: "grey.900" }}
+                width={250}
+                height={200}
+              />
+              <ImageListItemBar
+                title={<Skeleton />}
+                subtitle={<Skeleton />}
+                position="top"
+              />
+            </ImageListItem>
+          ))}
         </ImageList>
       </Box>
     );
@@ -69,7 +64,6 @@ export default function Photos() {
             const cols = index % 5 === 0 ? 2 : 1;
             const rows = index % 5 === 0 ? 2 : 1;
 
-            console.log("cols,rows :>> ", cols, rows);
             return (
               <ImageListItem key={item.id} cols={cols} rows={rows}>
                 <img
