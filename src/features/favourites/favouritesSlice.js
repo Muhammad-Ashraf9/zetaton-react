@@ -17,7 +17,7 @@ export const favouritesSlice = createSlice({
     },
     removeFavourite: (state, action) => {
       state.favourites = state.favourites.filter(
-        (favourite) => favourite.url !== action.payload.url
+        (favourite) => favourite !== action.payload
       );
     },
     clearFavourites: (state) => {
