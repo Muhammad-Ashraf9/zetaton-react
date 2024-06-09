@@ -1,10 +1,30 @@
 # Zetaton + React
 
+## project setup
+
+1.  clone the repo
+
+```bash
+git clone https://github.com/Muhammad-Ashraf9/zetaton-react.git
+```
+
+2.  install dependencies
+
+```bash
+npm install
+```
+
+3.  start the project
+
+```bash
+npm run dev
+```
+
+---
+
 ## project structure
 
 - inspired by [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
-
-
 
 ---
 
