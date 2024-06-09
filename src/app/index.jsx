@@ -1,7 +1,9 @@
+import Routes from "./routes";
+
 function App() {
   return (
     <>
-      <h1>Zetaton + React</h1>
+      <Routes />
     </>
   );
 }
