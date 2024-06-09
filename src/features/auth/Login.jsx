@@ -10,13 +10,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-import { auth } from "../../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import authErrorMessages from "../../config/firebaseErrors";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../services/auth";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -27,14 +28,8 @@ function Login() {
     event.preventDefault();
 
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-
-      console.log("user :>> ", user);
-      console.log("auth.currentUser :>> ", auth.currentUser);
+      await login(formData.email, formData.password);
+      navigate("/");
     } catch (error) {
       console.error("error :>> ", error);
       setError(authErrorMessages[error.code]);

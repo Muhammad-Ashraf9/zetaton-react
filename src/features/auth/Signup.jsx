@@ -9,15 +9,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import authErrorMessages from "../../config/firebaseErrors";
+import { signup } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
-  console.log("auth :>> ", auth);
-
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -28,14 +27,8 @@ function Signup() {
     event.preventDefault();
 
     try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-
-      console.log("user :>> ", user);
-      console.log("auth.currentUser :>> ", auth.currentUser);
+      await signup(formData.email, formData.password);
+      navigate("/");
     } catch (error) {
       console.error("error :>> ", error);
       setError(authErrorMessages[error.code]);
