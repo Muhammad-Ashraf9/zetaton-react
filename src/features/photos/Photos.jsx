@@ -1,11 +1,9 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import IconButton from "@mui/material/IconButton";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Box, Grid, Skeleton } from "@mui/material";
 import { useGetPhotosQuery } from "./pexelsApiSlice";
-import { Star } from "@mui/icons-material";
+import FavouriteBtn from "../favourites/FavouriteBtn";
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
@@ -83,14 +81,7 @@ export default function Photos() {
                   title={item.alt}
                   subtitle={<span>by: {item.photographer}</span>}
                   position="top"
-                  actionIcon={
-                    <IconButton
-                      sx={{ color: "white" }}
-                      aria-label={`star ${item.alt}`}
-                    >
-                      {item.liked ? <Star /> : <StarBorderIcon />}
-                    </IconButton>
-                  }
+                  actionIcon={<FavouriteBtn item={item} />}
                   actionPosition="left"
                 />
               </ImageListItem>

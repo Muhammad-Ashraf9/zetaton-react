@@ -3,6 +3,9 @@ import { initializeApp } from "firebase/app";
 //auth
 import { getAuth } from "firebase/auth";
 
+//firestore
+import { getFirestore } from "firebase/firestore";
+
 //should be hidden in .env file
 const firebaseConfig = {
   apiKey: "AIzaSyAr_HviO1iTyX9oIgd-cMsh5DfbwxL1fDY",
@@ -16,6 +19,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
 
-export { auth, firebaseApp };
+export const auth = getAuth(firebaseApp);
+
+export const db = getFirestore(firebaseApp);
+
+export const USER_COLLECTION = "users";
