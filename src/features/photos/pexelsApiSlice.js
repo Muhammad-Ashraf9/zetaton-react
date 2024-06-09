@@ -18,8 +18,8 @@ export const pexelsApiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getPhotos: builder.query({
-      query: (query) => {
-        return `?query=${query || QUERY}`;
+      query: (page = 1, query = QUERY) => {
+        return `?page=${page}&query=${query}`;
       },
       providesTags: ["Photos"],
     }),

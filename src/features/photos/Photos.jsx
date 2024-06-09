@@ -1,15 +1,23 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Box, Grid, Pagination, Skeleton } from "@mui/material";
 import { useGetPhotosQuery } from "./pexelsApiSlice";
 import FavouriteBtn from "../favourites/FavouriteBtn";
 import { srcset } from "../../utils/srcset";
-
-
+import { useState } from "react";
 
 export default function Photos() {
-  const { data, error, isLoading, isError } = useGetPhotosQuery();
+  const [page, setPage] = useState(1);
+  const { data, error, isLoading, isError } = useGetPhotosQuery(page);
+
+  /**
+ *   "total_results": 10000,
+  "page": 1,
+  "per_page": 1,
+ */
+  const totalResults = data?.total_results;
+  const totalPages = Math.ceil(totalResults / data?.per_page);
 
   if (isLoading) {
     return (
@@ -20,21 +28,25 @@ export default function Photos() {
         sx={{ display: "flex", justifyContent: "center" }}
       >
         <ImageList gap={3}>
-          {[...Array(20)].map((_, index) => (
-            <ImageListItem key={index}>
-              <Skeleton
-                variant="rectangular"
-                sx={{ bgcolor: "grey.900" }}
-                width={250}
-                height={200}
-              />
-              <ImageListItemBar
-                title={<Skeleton />}
-                subtitle={<Skeleton />}
-                position="top"
-              />
-            </ImageListItem>
-          ))}
+          {[...Array(20)].map((_, index) => {
+            const cols = index % 5 === 0 ? 2 : 1;
+            const rows = index % 5 === 0 ? 2 : 1;
+            return (
+              <ImageListItem key={index} cols={cols} rows={rows}>
+                <Skeleton
+                  variant="rectangular"
+                  sx={{ bgcolor: "grey.900" }}
+                  width={250 * cols}
+                  height={200 * rows}
+                />
+                <ImageListItemBar
+                  title={<Skeleton />}
+                  subtitle={<Skeleton />}
+                  position="top"
+                />
+              </ImageListItem>
+            );
+          })}
         </ImageList>
       </Box>
     );
@@ -76,6 +88,12 @@ export default function Photos() {
             );
           })}
         </ImageList>
+        <Pagination
+          count={totalPages}
+          color="primary"
+          onChange={(_, value) => setPage(value)}
+          sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+        />
       </Grid>
     </Grid>
   );
