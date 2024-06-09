@@ -1,8 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { pexelsApiSlice } from "../features/pictures/pexelsApiSlice";
+import { pexelsApiSlice } from "../features/photos/pexelsApiSlice";
 import authReducer from "../features/auth/authSlice";
-
-
 
 const store = configureStore({
   reducer: {

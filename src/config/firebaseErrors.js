@@ -71,6 +71,7 @@ const authErrorMessages = {
   "auth/missing-multi-factor-info": "The multi-factor info is missing.",
   "auth/missing-multi-factor-session": "The multi-factor session is missing.",
   "auth/missing-phone-number": "The phone number is missing.",
+  "auth/missing-password": "The password is missing.",
   "auth/missing-verification-id": "The verification ID is missing.",
   "auth/app-deleted": "The app has been deleted.",
   "auth/account-exists-with-different-credential":
