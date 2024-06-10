@@ -49,7 +49,7 @@ npm run dev
 
 ## Video
 
-![Zetaton + React (Vidoe)](https://drive.google.com/drive/folders/1tjKGlEBS8wqhmj8jEaWVv5l8TX2utvFQ?usp=sharing)
+[Zetaton + React (Video)](https://drive.google.com/drive/folders/1tjKGlEBS8wqhmj8jEaWVv5l8TX2utvFQ?usp=sharing)
 
 ## project structure
 
