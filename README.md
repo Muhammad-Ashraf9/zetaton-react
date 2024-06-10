@@ -28,6 +28,19 @@ npm run dev
 
 ---
 
+## Features
+
+- Sign-up, sign-in and sign-out functionality using Firebase authentication and presisting the authentication state using `redux-toolkit`
+- Form validation using `react-hook-form`
+- Fetch photos from the Pexels API ([https://www.pexels.com/api/](https://www.pexels.com/api/)) using `RTK Query` and display them in a grid
+- `Pagination` to navigate through the photos
+- `Loading Skeleton` to display a loading state while fetching the photos
+- For signed in users, they can `like` and `unlike` photos and the liked photos will be saved in the firestore database
+- `Favorites` screen to display all the favorite images stored by the user.
+- user can `delete` the favorite images from the `Favorites` screen
+
+---
+
 ## project structure
 
 - inspired by [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
