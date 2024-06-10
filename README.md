@@ -41,6 +41,16 @@ npm run dev
 
 ---
 
+## Screenshots
+
+![Redux DevTools](./assets/redux-dev-tools.png)
+
+---
+
+## Video
+
+![Zetaton + React (Vidoe)](https://drive.google.com/drive/folders/1tjKGlEBS8wqhmj8jEaWVv5l8TX2utvFQ?usp=sharing)
+
 ## project structure
 
 - inspired by [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
